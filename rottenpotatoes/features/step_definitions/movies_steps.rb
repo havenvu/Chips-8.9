@@ -23,3 +23,9 @@ Then /I should see all the movies/ do
     step %{I should see "#{movie.title}"}
   end
 end
+
+Then(/^the director of "([^"]*)" should be "([^"]*)"$/) do |arg1, arg2|
+  steps %Q('^the director field within #{arg2} should contain #{arg1})
+end
+
+#    Then the director of "Alien" should be "Ridley Scott"
