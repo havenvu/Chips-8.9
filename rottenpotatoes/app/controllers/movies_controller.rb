@@ -39,9 +39,14 @@ class MoviesController < ApplicationController
   end
   
   def find_with_same_director
-    dir = params[:director]
-    @movie = Movie.find(director: dir)
+    @movie = Movie.find(params[:title])
+    dir = @movie.director
+    @similar_movies = Movie.where(director: dir).where.not(id: params[:title])
+    if @similar_movies.empty?
+      redirect_to root_url, notice: "'#{@movie.title}' has no director info"
+    end
   end
+  
   private
   # Making "internal" methods private is not required, but is a common practice.
   # This helps make clear which methods respond to requests, and which ones do not.

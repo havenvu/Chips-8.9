@@ -1,0 +1,8 @@
+<!--  app/views/movies/find_with_same_director.html.erb -->
+<h1>Similar Movie to <%= @movie.title %></h1>
+
+<ul>
+<% @similar_movies.each do |movie_name|%>
+  <li> <%= movie_name.title %> </li>
+   <% end %>
+</ul>
